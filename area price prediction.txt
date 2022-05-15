@@ -1,0 +1,44 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import random
+import matplotlib.pyplot as plt
+from sklearn import linear_model
+%matplotlib inline
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+
+
+df=pd.DataFrame({"area":[49,56,71,57,64,52,33,40,34,46,60],"price":[9000,8700,6000,7000,6200,8500,12880,11000,12500,10000,7066]})
+
+print(df)
+
+plt.scatter(df.area,df['price'],color='r')
+plt.xlabel("Area",fontsize=16)
+plt.ylabel("Price",fontsize=16)
+plt.title("Area Price Prediction",fontsize=22)
+plt.grid(color="b",linestyle="--",linewidth="0.4")
+plt.show()
+
+
+model=linear_model.LinearRegression()
+model.fit(df[['area']],df.price)
+print(model.predict([[59]]))
+
+
+
+
+
+predicted_price=model.predict(df[['area']])
+#print(predicted_price)
+df.price
+model.coef_ 
+model.intercept_ 
+plt.scatter(df.area,df['price'],color='r')
+plt.plot(df.area,predicted_price)
+plt.xlabel("Area",fontsize=16)
+plt.ylabel("Price",fontsize=16)
+plt.title("Area Price Prediction",fontsize=22)
+plt.grid(color="b",linestyle="--",linewidth="0.4")
+plt.show()
